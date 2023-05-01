@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>YouTube URL Unblocker</title>
+  <style>
+    body {
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-top: 50px;
+    }
+
+
+    p {
+      font-family: Arial, sans-serif;
+      font-weight: bold;
+    }
+
+
+    button {
+      background-color: #ff4d4d;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      margin-top: 30px;
+      font-size: 24px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #ff1a1a;
+    }
+
+    a {
+      text-align: center;
+    }
+
+
+    // centering
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+  </style>
+</head>
+<link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/1384/1384060.png">
+
+<body>
+  <h1>YouTube URL Unblocker</h1>
+  <button onclick="convertUrl()">Convert URL</button>
+  <p>Created by kohen#7075</p>
+  <p1>Please only use this to unblock educational videos that aren't supposed to be blocked.<br>
+    I am not responsible for you getting in trouble.</p1>
+  <br>
+  <a href="https://youtube.com/@repelix">My Youtube Channel</a>
+  <script>
+    function isValidYoutubeUrl(url) {
+      var parser = document.createElement('a');
+      parser.href = url;
+      var hostname = parser.hostname.toLowerCase();
+      return hostname === 'www.youtube.com' || hostname === 'youtube.com';
+    }
+    function convertUrl() {
+      var youtubeUrl = prompt("Enter a YouTube URL:");
+      if (!isValidYoutubeUrl(youtubeUrl)) {
+        alert("Invalid URL. Please try again.");
+        return;
+      }
+      // Inject the bookmarklet into the current page
+      var script = document.createElement("script");
+      script.innerHTML = "(function () {if (window.location.toString().includes('www.youtube.com/watch?v')) { window.open('https://www.youtube-nocookie.com/embed/' + window.location.toString().split('=')[1]) }})();";
+      document.body.appendChild(script);
+      // Open the converted URL in a new tab
+      window.open("https://www.youtube-nocookie.com/embed/" + youtubeUrl.split("=")[1]);
+    }
+  </script>
+</body>
+
+</html>
